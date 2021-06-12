@@ -1,0 +1,13 @@
+# Changelog
+
+## [1.1.0](https://www.github.com/fengsi-io/nuxt-axios-cache/compare/v1.0.0...v1.1.0) (2021-06-12)
+
+
+### Features
+
+* nuxt-axios-cache ([2b62b04](https://www.github.com/fengsi-io/nuxt-axios-cache/commit/2b62b04dd19f811fc9bf9d1705f256fd563f00fd))
+
+
+### Bug Fixes
+
+* 包含dist文件 ([80718e0](https://www.github.com/fengsi-io/nuxt-axios-cache/commit/80718e033af26ef82c0702d6b3e80c28d8662823))
