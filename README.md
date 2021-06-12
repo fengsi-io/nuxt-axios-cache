@@ -31,7 +31,7 @@ export default {
 3. plugins/api.js
 ```js
 import axios from 'axios'
-import cacheAdapterEnhancer from '../../dist/cacheAdapterEnhancer'
+import cacheAdapterEnhancer from '@fengsi/nuxt-axios-cache/dist/cacheAdapterEnhancer'
 
 export default ({ ssrContext }) => {
   const defaults = Object.assign({}, axios.defaults)
