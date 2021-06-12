@@ -1,0 +1,8 @@
+# Release strategy
+releaseType: node
+
+# Release to GitHub
+handleGHRelease: true
+
+#Package name
+packageName: '@fengsi/nuxt-axios-cache'

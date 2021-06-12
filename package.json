@@ -1,0 +1,44 @@
+{
+  "name": "@fengsi/nuxt-axios-cache",
+  "version": "1.0.0",
+  "description": "a nuxt modules",
+  "main": "dist/module.js",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "nuxt",
+    "lru-cache",
+    "localforage"
+  ],
+  "repository": "https://github.com/fengsi-io/nuxt-axios-cache.git",
+  "author": "pony <1655688657@qq.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "npx babel lib -d dist",
+    "lint": "eslint --ext .js,.vue .",
+    "lintfix": "eslint --fix --ext .js,.vue ."
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.5",
+    "@babel/core": "^7.14.5",
+    "@babel/preset-env": "^7.14.5",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@nuxtjs/eslint-config": "^5.0.0",
+    "@nuxtjs/module-test-utils": "^1.6.3",
+    "axios": "^0.21.1",
+    "eslint": "^7.15.0",
+    "husky": "^4.3.0",
+    "jest": "^26.6.3",
+    "nuxt-edge": "^2.15.0-26788356.847d4ae0"
+  },
+  "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.14.5",
+    "localforage": "^1.9.0",
+    "lru-cache": "^6.0.0"
+  },
+  "peerDependencies": {
+    "axios": "*"
+  }
+}
