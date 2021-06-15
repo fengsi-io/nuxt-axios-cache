@@ -101,7 +101,7 @@ function buildSortedURL() {
   if (queryString) {
     var paramsPair = queryString.split('&');
     var filterUrl = "".concat(urlPath, "?").concat(paramsPair.sort().join('&'));
-    return filterUrl.replace(/(?<=\[(lte|lt|gt|gte)\]=)(.*?&|.*)/g, '');
+    return filterUrl.replace(/\[(lte|lt|gt|gte)\]=(.*?&|.*)/g, '');
   }
 
   return builtURL;
