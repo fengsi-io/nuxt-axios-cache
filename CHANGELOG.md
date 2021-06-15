@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.1.2](https://www.github.com/fengsi-io/nuxt-axios-cache/compare/v1.1.1...v1.1.2) (2021-06-15)
+
+
+### Bug Fixes
+
+* delete regexp ([23a3f87](https://www.github.com/fengsi-io/nuxt-axios-cache/commit/23a3f874f288eb8bfe8ffcc02a4a22b04bd55bec))
+
 ### [1.1.1](https://www.github.com/fengsi-io/nuxt-axios-cache/compare/v1.1.0...v1.1.1) (2021-06-15)
 
 
