@@ -53,9 +53,10 @@ export default ({ ssrContext }) => {
 ### default options
 ```js
   /* module options */
+  updateAgeOnGet = true
   cacheNodeTtl = 1800
   cacheNodeLimit = 300
-  clearCacheRouteName = 'nuxt-cache'
+  clearCacheRouteName = 'nuxt-cache' // 清除缓存路由， 请求方法为PACTH
 
   /* cacheAdapterEnhancer options */
   enabledByDefault = true
@@ -64,3 +65,8 @@ export default ({ ssrContext }) => {
   defaultCache = null
   cacheBrowserTtl = 3600
 ```
+
+### Related configuration
+
+<a href="https://github.com/isaacs/node-lru-cache" target="_blank">lru-cache</a> <br/>
+<a href="https://github.com/localForage/localForage" target="_blank">localForage</a>
