@@ -1,5 +1,13 @@
 # Changelog
 
+### [1.1.3](https://www.github.com/fengsi-io/nuxt-axios-cache/compare/v1.1.2...v1.1.3) (2021-06-16)
+
+
+### Bug Fixes
+
+* 设置清除缓存的请求方法只为DELETE ([b94d386](https://www.github.com/fengsi-io/nuxt-axios-cache/commit/b94d38610c41ec48bda517f01ca1443b52a48b27))
+* 设置清除缓存的请求方法只为PATCH ([3fd1fba](https://www.github.com/fengsi-io/nuxt-axios-cache/commit/3fd1fba1543c2539d9efd4e37d6f54be90c255d7))
+
 ### [1.1.2](https://www.github.com/fengsi-io/nuxt-axios-cache/compare/v1.1.1...v1.1.2) (2021-06-15)
 
 
