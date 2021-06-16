@@ -25,7 +25,7 @@ module.exports = function (moduleOptions) {
     path: clearCacheRouteName,
     handler: function handler(req, res, next) {
       try {
-        if (req.method === 'PATCH') {
+        if (req.method === 'DELETE') {
           axCache.reset();
           res.setHeader('Content-Type', 'text/plain');
           res.end('success');

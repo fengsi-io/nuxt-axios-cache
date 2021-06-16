@@ -56,7 +56,7 @@ export default ({ ssrContext }) => {
   updateAgeOnGet = true
   cacheNodeTtl = 1800
   cacheNodeLimit = 300
-  clearCacheRouteName = 'nuxt-cache' // 清除缓存路由， 请求方法为PACTH
+  clearCacheRouteName = 'nuxt-cache' // 清除缓存路由， 请求方法为DELETE
 
   /* cacheAdapterEnhancer options */
   enabledByDefault = true
