@@ -22,7 +22,7 @@ export default {
       /* module options */
       cacheNodeTtl: 60 * 30,
       cacheNodeLimit: 300,
-      clearCacheRouteName: 'nuxt-cache'
+      clearCacheRoutePath: '/_/nuxt-cache'
     }]
   ]
 }
@@ -56,7 +56,7 @@ export default ({ ssrContext }) => {
   updateAgeOnGet = true
   cacheNodeTtl = 1800
   cacheNodeLimit = 300
-  clearCacheRouteName = 'nuxt-cache' // 清除缓存路由， 请求方法为DELETE
+  clearCacheRoutePath = '/_/nuxt-cache' // 清除缓存路由， 请求方法为DELETE
 
   /* cacheAdapterEnhancer options */
   enabledByDefault = true
