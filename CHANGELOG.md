@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.1.4](https://www.github.com/fengsi-io/nuxt-axios-cache/compare/v1.1.3...v1.1.4) (2021-06-21)
+
+
+### Bug Fixes
+
+* 修改变量名含义 ([30833da](https://www.github.com/fengsi-io/nuxt-axios-cache/commit/30833dae0b5b2f96b888e07464783c37a0658767))
+
 ### [1.1.3](https://www.github.com/fengsi-io/nuxt-axios-cache/compare/v1.1.2...v1.1.3) (2021-06-16)
 
 
