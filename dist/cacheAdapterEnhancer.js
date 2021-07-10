@@ -117,9 +117,11 @@ function cacheAdapterEnhancer(adapter) {
       _options$defaultCache = options.defaultCache,
       defaultCache = _options$defaultCache === void 0 ? null : _options$defaultCache,
       _options$cacheBrowser = options.cacheBrowserTtl,
-      cacheBrowserTtl = _options$cacheBrowser === void 0 ? 3600 : _options$cacheBrowser; // 清除客户端缓存
+      cacheBrowserTtl = _options$cacheBrowser === void 0 ? 3600 : _options$cacheBrowser,
+      _options$cacheBrowser2 = options.cacheBrowserEnable,
+      cacheBrowserEnable = _options$cacheBrowser2 === void 0 ? false : _options$cacheBrowser2; // 清除客户端缓存
 
-  if (!defaultCache && window && window.localStorage) {
+  if (cacheBrowserEnable && window && window.localStorage) {
     if (localStorage.getItem('open_browser_date') && localStorage.getItem('open_browser_date') < Date.now()) {
       forageCache.clear();
     }
@@ -129,20 +131,20 @@ function cacheAdapterEnhancer(adapter) {
   }
 
   return /*#__PURE__*/function () {
-    var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(config) {
+    var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(config) {
       var _config$cacheFlag;
 
       var useCache, url, method, params, paramsSerializer, forceUpdate, _config$expireInSecon, expireInSeconds, key, responsePromise, item;
 
-      return _regenerator["default"].wrap(function _callee3$(_context3) {
+      return _regenerator["default"].wrap(function _callee2$(_context2) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
               useCache = (_config$cacheFlag = config[cacheFlag]) !== null && _config$cacheFlag !== void 0 ? _config$cacheFlag : enabledByDefault;
               url = config.url, method = config.method, params = config.params, paramsSerializer = config.paramsSerializer, forceUpdate = config.forceUpdate, _config$expireInSecon = config.expireInSeconds, expireInSeconds = _config$expireInSecon === void 0 ? cacheBrowserTtl : _config$expireInSecon;
 
               if (!(method === 'get' && useCache)) {
-                _context3.next = 15;
+                _context2.next = 15;
                 break;
               }
 
@@ -150,50 +152,35 @@ function cacheAdapterEnhancer(adapter) {
               responsePromise = null;
 
               if (!defaultCache) {
-                _context3.next = 10;
+                _context2.next = 9;
                 break;
               }
 
               responsePromise = defaultCache.get(key);
 
               if (!responsePromise || forceUpdate) {
-                responsePromise = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2() {
-                  return _regenerator["default"].wrap(function _callee2$(_context2) {
-                    while (1) {
-                      switch (_context2.prev = _context2.next) {
-                        case 0:
-                          _context2.prev = 0;
-                          _context2.next = 3;
-                          return adapter(config);
-
-                        case 3:
-                          return _context2.abrupt("return", _context2.sent);
-
-                        case 6:
-                          _context2.prev = 6;
-                          _context2.t0 = _context2["catch"](0);
-                          defaultCache.del(key);
-                          throw _context2.t0;
-
-                        case 10:
-                        case "end":
-                          return _context2.stop();
-                      }
-                    }
-                  }, _callee2, null, [[0, 6]]);
-                }))();
-                defaultCache.set(key, responsePromise);
+                responsePromise = adapter(config).then(function (response) {
+                  defaultCache.set(key, response);
+                  return response;
+                })["catch"](function (reason) {
+                  defaultCache.del(key);
+                  throw reason;
+                });
               }
 
-              _context3.next = 14;
-              break;
+              return _context2.abrupt("return", responsePromise);
 
-            case 10:
-              _context3.next = 12;
+            case 9:
+              if (!cacheBrowserEnable) {
+                _context2.next = 15;
+                break;
+              }
+
+              _context2.next = 12;
               return forageCache.get(key);
 
             case 12:
-              item = _context3.sent;
+              item = _context2.sent;
 
               if (!item || forceUpdate) {
                 responsePromise = adapter(config).then(function (response) {
@@ -217,18 +204,17 @@ function cacheAdapterEnhancer(adapter) {
                 responsePromise = Promise.resolve(item);
               }
 
-            case 14:
-              return _context3.abrupt("return", responsePromise);
+              return _context2.abrupt("return", responsePromise);
 
             case 15:
-              return _context3.abrupt("return", adapter(config));
+              return _context2.abrupt("return", adapter(config));
 
             case 16:
             case "end":
-              return _context3.stop();
+              return _context2.stop();
           }
         }
-      }, _callee3);
+      }, _callee2);
     }));
 
     return function (_x2) {
