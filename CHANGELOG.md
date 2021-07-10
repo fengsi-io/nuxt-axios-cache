@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://www.github.com/fengsi-io/nuxt-axios-cache/compare/v1.1.4...v2.0.0) (2021-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* 不兼容修改
+
+### Code Refactoring
+
+* 重构api ([09c8e5c](https://www.github.com/fengsi-io/nuxt-axios-cache/commit/09c8e5cf98c32a830ed6ef04bf93b4d1550797d6))
+
 ### [1.1.4](https://www.github.com/fengsi-io/nuxt-axios-cache/compare/v1.1.3...v1.1.4) (2021-06-21)
 
 
