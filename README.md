@@ -34,18 +34,20 @@ import axios from 'axios'
 import cacheAdapterEnhancer from '@fengsi/nuxt-axios-cache/dist/cacheAdapterEnhancer'
 
 export default ({ ssrContext }) => {
-  const defaults = Object.assign({}, axios.defaults)
+  let adapter = null
 
   if (process.server) {
-    defaults.adapter = cacheAdapterEnhancer(defaults.adapter, {
+    adapter = cacheAdapterEnhancer(axios.defaults.adapter, {
       defaultCache: ssrContext.$axCache,
     })
   } else {
-    defaults.adapter = cacheAdapterEnhancer(defaults.adapter)
+    adapter = cacheAdapterEnhancer(axios.defaults.adapter, {
+      cacheBrowserEnable: true
+    })
   }
 
-  if (process.env.NODE_ENV !== 'development') {
-    axios.defaults = defaults
+  if (adapter && process.env.NODE_ENV !== 'development') {
+    axios..create({ adapter })
   }
 }
 ```
@@ -64,6 +66,7 @@ export default ({ ssrContext }) => {
   project = 'default'
   defaultCache = null
   cacheBrowserTtl = 3600
+  cacheBrowserEnable = false
 ```
 
 ### Related configuration
