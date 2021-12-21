@@ -17,6 +17,7 @@ var _localforage = _interopRequireDefault(require("localforage"));
 
 var _buildURL = _interopRequireDefault(require("axios/lib/helpers/buildURL"));
 
+var browserCacheDatekey = 'open_browser_cache_date';
 var forageCache = {
   get: function () {
     var _get = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(key) {
@@ -74,7 +75,7 @@ var forageCache = {
     if (expire && typeof expire === 'number') {
       expire = Math.round(expire * 1000 + Date.now()); // seconds
 
-      localStorage.setItem('open_browser_date', expire);
+      localStorage.setItem(browserCacheDatekey, expire);
     }
 
     return _localforage["default"].setItem(key, {
@@ -106,6 +107,27 @@ function buildSortedURL() {
   return builtURL;
 }
 
+function jsRequestIdleCallback(cb) {
+  if (window.requestIdleCallback) {
+    return window.requestIdleCallback(cb);
+  }
+
+  return setTimeout(cb, 1);
+}
+
+function clearCacheBrowser(cacheBrowserSession, cacheBrowserTtl) {
+  var oldDate = localStorage.getItem(browserCacheDatekey);
+
+  if (cacheBrowserSession || oldDate && oldDate < Date.now()) {
+    jsRequestIdleCallback(function () {
+      forageCache.clear();
+    });
+  }
+
+  var expire = Math.round(cacheBrowserTtl * 1000 + Date.now());
+  localStorage.setItem(browserCacheDatekey, expire);
+}
+
 function cacheAdapterEnhancer(adapter) {
   var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   var _options$enabledByDef = options.enabledByDefault,
@@ -119,15 +141,13 @@ function cacheAdapterEnhancer(adapter) {
       _options$cacheBrowser = options.cacheBrowserTtl,
       cacheBrowserTtl = _options$cacheBrowser === void 0 ? 3600 : _options$cacheBrowser,
       _options$cacheBrowser2 = options.cacheBrowserEnable,
-      cacheBrowserEnable = _options$cacheBrowser2 === void 0 ? false : _options$cacheBrowser2; // 清除客户端缓存
+      cacheBrowserEnable = _options$cacheBrowser2 === void 0 ? false : _options$cacheBrowser2,
+      _options$cacheBrowser3 = options.cacheBrowserSession,
+      cacheBrowserSession = _options$cacheBrowser3 === void 0 ? true : _options$cacheBrowser3;
 
   if (cacheBrowserEnable && window && window.localStorage) {
-    if (localStorage.getItem('open_browser_date') && localStorage.getItem('open_browser_date') < Date.now()) {
-      forageCache.clear();
-    }
-
-    var expire = Math.round(cacheBrowserTtl * 1000 + Date.now());
-    localStorage.setItem('open_browser_date', expire);
+    // Clear client cache
+    clearCacheBrowser(cacheBrowserSession, cacheBrowserTtl);
   }
 
   return /*#__PURE__*/function () {

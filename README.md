@@ -22,7 +22,7 @@ export default {
       /* module options */
       cacheNodeTtl: 60 * 30,
       cacheNodeLimit: 300,
-      clearCacheRoutePath: '/_/nuxt-cache'
+      clearCacheRoutePath: '/_/nuxt-cache' // Clear cache route, request method is DELETE
     }]
   ]
 }
@@ -58,15 +58,16 @@ export default ({ ssrContext }) => {
   updateAgeOnGet = true
   cacheNodeTtl = 1800
   cacheNodeLimit = 300
-  clearCacheRoutePath = '/_/nuxt-cache' // 清除缓存路由， 请求方法为DELETE
+  clearCacheRoutePath = '/_/nuxt-cache' // 清除缓存路由， 请求方法为 DELETE
 
   /* cacheAdapterEnhancer options */
   enabledByDefault = true
   cacheFlag = 'cache'
-  project = 'default'
+  project = 'default' // key 值前缀
   defaultCache = null
+  cacheBrowserEnable = false // 设置为 true 下面的参数作用
   cacheBrowserTtl = 3600
-  cacheBrowserEnable = false
+  cacheBrowserSession = true // 会话缓存
 ```
 
 ### Related configuration
