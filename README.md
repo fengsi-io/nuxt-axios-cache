@@ -65,7 +65,7 @@ export default ({ ssrContext }) => {
   cacheFlag = 'cache'
   project = 'default' // key 值前缀
   defaultCache = null
-  cacheBrowserEnable = false // 设置为 true 下面的参数作用
+  cacheBrowserEnable = false // 设置为 true 下面的参数才有作用
   cacheBrowserTtl = 3600
   cacheBrowserSession = true // 会话缓存
 ```
