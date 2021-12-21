@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://www.github.com/fengsi-io/nuxt-axios-cache/compare/v2.0.0...v2.1.0) (2021-12-21)
+
+
+### Features
+
+* 添加 cacheBrowserSession 选项，启用会话缓存 ([38582ab](https://www.github.com/fengsi-io/nuxt-axios-cache/commit/38582ab69d656bfd8caa27564e2e5abfafdf3fbd))
+
 ## [2.0.0](https://www.github.com/fengsi-io/nuxt-axios-cache/compare/v1.1.4...v2.0.0) (2021-07-10)
 
 
